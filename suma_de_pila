@@ -1,0 +1,93 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package pila.de.sumas;
+import java.util.Random;
+import java.util.Scanner;
+/**
+ *
+ * @author Pug
+ */
+public class PilaDeSumas {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner teclado = new Scanner(System.in);
+        //comenzamos con la declaración de las variables para el tope y el switch
+    int tp=0,opcion=0; 
+    //pedimos un unico tamaño para ambas pilas para evitar probblemas
+     System.out.println("¿cual es el tamaño de las pilas");
+     int pa = teclado.nextInt();
+     //creamos las tres pilas a utilizar en esta ocasión con la longitud de la variable pedida por teclado
+       int pilaA[] = new int [pa]; 
+       int pilaB[] = new int [pa];  
+       int pilaC[] = new int [pa];
+       //esta variable es para lograr el intervalo random en los datos
+    Random al = new Random();
+    //aqui se inicia el do-while para poner un menu con switch
+       do {
+            System.out.println("\n1-llenar pila A y pila B"
+                    + "\n2-mostrar pilas A, B"
+                    + "\n3-vaciar pilas A, B"
+                    + "\n4-unir pilas"
+                    + "\n5- mostrar pila C"
+            + "\n6- FIN");
+           switch (opcion = teclado.nextInt()) {
+               //este primer caso se encarga del llenado de ambas pilas utilizando el ciclo for y las variables random para crear los datos a manipular
+               case 1:
+                   System.out.println("pilas llenadas con exito");
+                   for(int i= 0; i<pa; i++){
+                       pilaA[i] =(int) (Math.random() * 100 + 1);
+                       
+                   }
+                  for(int i= 0; i<pa; i++){
+                       pilaB[i] = (al.nextInt(200-100+1)+100);
+                  }
+                   break;
+                   //este segundo caso muestra el contenido de las pilas teniendo en cuenta la posicion de la tabla añadiendo el menos 1 a la variable leida por teclado y asi no haya mas casillas
+                   case 2:
+                            
+                    System.out.println("Pila A\n");     
+                    for (int i = pa - 1; i >= 0; i--) {      
+                        System.out.println(" " + pilaA[i]);    
+                    }
+                    System.out.println("Pila B\n");      
+                    for (int i = pa - 1; i >= 0; i--) {      
+                        System.out.println(" " + pilaB[i]);     
+                        }
+                    
+                   
+                   break;
+                   //hace un vaciado de los datos o una limpieza total, teniendo en cuenta que las pilas usan la misma variable, tambien limpia la suma total
+                   case 3:
+                      System.out.println("se vacio con exito la pila");
+                    for (int i = pa - 1; i >= 0; i--) {
+                        pa--;
+                    }
+                    
+                   break;
+                   //para este caso la utilizacion del for es la misma que arriba dar una orientacion acerca de las casillas y la operacion que se efectuara en ellas.
+                   case 4:
+                       System.out.println("se han sumado con exito");
+                       for (int i = pa - 1; i >= 0; i--) {
+                           pilaC[tp]=pilaA[i]+pilaB[i];
+                           tp++;
+                       }
+                       
+                   break;
+                   //este caso se encarga de mostrar el resultado final para la impresio de la suma.
+                   case 5:
+                       System.out.println("pila C ");
+                       for (int i = pa - 1; i >= 0; i--) {     
+                        System.out.println(" " + pilaC[i]);     
+                    }
+                   break;
+           }
+           
+       }while (opcion != 6);
+    }
+}
